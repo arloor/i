@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import service.PocoService;
 
@@ -30,8 +31,10 @@ public class PocoRestController {
     */
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ResponseEntity<List<PocoImage>> getNews() {
-        List<PocoImage> pocoImages = pocoService.getPhotos();
+    public ResponseEntity<List<PocoImage>> getNews(
+            @RequestParam(name = "num",defaultValue = "100")int num
+    ) {
+        List<PocoImage> pocoImages = pocoService.getPhotos(num);
         return pocoImages.size() > 0 ? new ResponseEntity<>(pocoImages, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

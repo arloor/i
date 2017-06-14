@@ -16,7 +16,7 @@ public class PocoServiceImpl implements PocoService{
     @Autowired
     PocoDao pocoDao;
     @Override
-    public List<PocoImage> getPhotos() {
-        return pocoDao.getPhotos();
+    public List<PocoImage> getPhotos( int num) {
+        return pocoDao.getPhotos(num);
     }
 }

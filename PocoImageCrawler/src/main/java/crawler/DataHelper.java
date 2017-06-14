@@ -44,34 +44,9 @@ public class DataHelper {
 
     public void save(Map<String,String> linkAndImgSrcMap) {
 
-        //下载文件
         File file= new File("pocoImg");
         if(!file.exists()){
             file.mkdir();
-        }
-
-        for (Map.Entry<String,String> entry:linkAndImgSrcMap.entrySet()
-             ) {
-            String imgSrc=entry.getValue();
-            String imgName="pocoImg"+imgSrc.substring(imgSrc.lastIndexOf("/"),imgSrc.lastIndexOf("?"));
-            try {
-                //下载图片
-                URL uri = new URL(imgSrc);
-                InputStream in = uri.openStream();
-                FileOutputStream fo = new FileOutputStream(new File(imgName));
-                byte[] buf = new byte[1024];
-                int length = 0;
-                while ((length = in.read(buf, 0, buf.length)) != -1) {
-                    fo.write(buf, 0, length);
-                }
-                in.close();
-                fo.close();
-                System.out.println(imgName+"下载完成");
-            }catch (Exception e){
-                e.printStackTrace();
-                continue;
-            }
-
         }
 
 
@@ -83,31 +58,56 @@ public class DataHelper {
         try {
             Statement statement = conn.createStatement();
             String sql;
-            sql = "drop TABLE  if exists `poco_img`;";
-            System.out.println(sql);
-            statement.executeUpdate(sql);
-            sql = "create table poco_img" +
-                    "(" +
-                    "  id int auto_increment" +
-                    "    primary key," +
-                    "  link varchar(255) not null," +
-                    "  img_src longtext not null" +
-                    ")" +
-                    ";";
-            System.out.println(sql);
-            statement.executeUpdate(sql);
-            statement.close();
+//            sql = "drop TABLE  if exists `poco_img`;";
+//            System.out.println(sql);
+//            statement.executeUpdate(sql);
+//            sql = "create table poco_img" +
+//                    "(" +
+//                    "  id int auto_increment" +
+//                    "    primary key," +
+//                    "  link varchar(255) not null," +
+//                    "  img_src longtext not null" +
+//                    ")" +
+//                    ";";
+//            System.out.println(sql);
+//            statement.executeUpdate(sql);
+//            statement.close();
             PreparedStatement preparedStatement = conn.prepareStatement("");
             for (Map.Entry<String,String>  entry: linkAndImgSrcMap.entrySet()
                     ) {
-                String imgSrc=entry.getValue();
-                String imgName="pocoImg"+imgSrc.substring(imgSrc.lastIndexOf("/"),imgSrc.lastIndexOf("?"));
-                sql = "INSERT INTO poco_img(link, img_src) VALUE ('" + entry.getKey() + "','" + imgName + "');";
-                System.out.println(sql);
-                preparedStatement = conn.prepareStatement(sql);
                 try {
+                    String imgSrc=entry.getValue();
+                    int start=imgSrc.lastIndexOf("/");
+                    int end=imgSrc.lastIndexOf("?");
+                    String imgName;
+                    if(end>0)
+                        imgName="pocoImg"+imgSrc.substring(start,end);
+                    else imgName="pocoImg"+imgSrc.substring(start);
+                    //下载图片
+                    File image=new File(imgName);
+                    if(!image.exists()){
+                        URL uri = new URL(imgSrc);
+                        InputStream in = uri.openStream();
+                        FileOutputStream fo = new FileOutputStream(new File(imgName));
+                        byte[] buf = new byte[1024];
+                        int length = 0;
+                        while ((length = in.read(buf, 0, buf.length)) != -1) {
+                            fo.write(buf, 0, length);
+                        }
+                        in.close();
+                        fo.close();
+                        System.out.println(imgName+"下载完成");
+                    }
+                    else System.out.println(imgName+"已经存在");
+
+
+                    //保存到数据库
+                    sql = "INSERT INTO poco_img(link, img_src) VALUE ('" + entry.getKey() + "','" + imgName + "');";
+                    System.out.println(sql);
+                    preparedStatement = conn.prepareStatement(sql);
+
                     preparedStatement.executeUpdate(sql);
-                } catch (com.mysql.jdbc.exceptions.MySQLSyntaxErrorException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                     continue;
                 }

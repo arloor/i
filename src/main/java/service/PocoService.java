@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface PocoService {
 
-    List<PocoImage> getPhotos();
+    List<PocoImage> getPhotos(int num);
 }

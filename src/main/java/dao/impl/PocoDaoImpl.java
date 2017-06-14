@@ -22,16 +22,16 @@ public class PocoDaoImpl implements PocoDao{
     DataHelper dataHelper;
 
     @Override
-    public List<PocoImage> getPhotos() {
+    public List<PocoImage> getPhotos(int num) {
         List<PocoImage> pocoImages=new ArrayList<>();
         Connection conn=dataHelper.getConnection();
         Statement statement=dataHelper.getStatement(conn);
-        String sql="select * from `poco_img`;";
+        String sql="select * from `poco_img` ORDER BY `time` DESC LIMIT 0,"+num+";";
         try {
             ResultSet resultSet=statement.executeQuery(sql);
             while(resultSet.next()){
-                String link=resultSet.getString(2);
-                String imgSrc=resultSet.getString(3);
+                String link=resultSet.getString("link");
+                String imgSrc=resultSet.getString("img_src");
                 PocoImage pocoImage=new PocoImage();
                 pocoImage.setLink(link);
                 pocoImage.setImgSrc(imgSrc);
