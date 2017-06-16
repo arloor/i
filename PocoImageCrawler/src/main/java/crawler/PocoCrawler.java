@@ -20,14 +20,14 @@ import java.util.Map;
  * 地址：https://github.com/arloor/EasyCrawler
  */
 public class PocoCrawler {
-    public static void main(String[] args) throws IOException {
+    public void crawler(String url) throws IOException {
         //创建httpclient的封装类，并且创建爬虫主类
         MyHttpClient myHttpClient = new MyHttpClient(2000, 5);
         Graber graber = new Graber(myHttpClient);
 
 
-        //爬取新浪财经的首页，获取文章链接链表
-        RequestEntity requestEntity = new RequestEntity(URI.create("http://photo.poco.cn/like/"));
+        //获取文章链接链表
+        RequestEntity requestEntity = new RequestEntity(URI.create(url));
         graber.add(requestEntity);
         HttpEntity response = graber.grab();
         response = new BufferedHttpEntity(response);
