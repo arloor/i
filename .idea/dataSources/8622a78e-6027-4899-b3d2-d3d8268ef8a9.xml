@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="pome@115.159.27.19">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.3">
+    <root id="1"/>
+    <schema id="2" parent="1" name="pome">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <table id="4" parent="2" name="guanzhu"/>
+    <table id="5" parent="2" name="pinglun"/>
+    <table id="6" parent="2" name="shoucang"/>
+    <table id="7" parent="2" name="user">
+      <Comment>用户表</Comment>
+    </table>
+    <table id="8" parent="2" name="works">
+      <Comment>作品集，规定：作品集的文件夹名为author_time.里面存放缩略图文件夹和大图。缩略图文件夹中有一个与author_time相同的缩略图文件，作为作品集的缩略图</Comment>
+    </table>
+    <column id="9" parent="4" name="guanzhuzhe">
+      <Position>1</Position>
+      <Comment>关注人</Comment>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="10" parent="4" name="beiguanzhuzhe">
+      <Position>2</Position>
+      <Comment>被关注人</Comment>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="11" parent="4" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>guanzhuzhe
+beiguanzhuzhe</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="12" parent="5" name="worksid">
+      <Position>1</Position>
+      <Comment>作品集ID</Comment>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="13" parent="5" name="time">
+      <Position>2</Position>
+      <Comment>评论时间</Comment>
+      <DataType>timestamp|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <column id="14" parent="5" name="detail">
+      <Position>3</Position>
+      <Comment>评论内容</Comment>
+      <DataType>varchar(200)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="15" parent="5" name="pinglunuser">
+      <Position>4</Position>
+      <Comment>评论用户</Comment>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="16" parent="5" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>worksid
+time</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="17" parent="6" name="username">
+      <Position>1</Position>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="18" parent="6" name="worksid">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="19" parent="6" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>username
+worksid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="20" parent="7" name="name">
+      <Position>1</Position>
+      <Comment>用户昵称</Comment>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="21" parent="7" name="email">
+      <Position>2</Position>
+      <Comment>注册邮箱</Comment>
+      <DataType>varchar(40)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="22" parent="7" name="password">
+      <Position>3</Position>
+      <Comment>密码</Comment>
+      <DataType>varchar(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="23" parent="7" name="verified">
+      <Position>4</Position>
+      <Comment>0未验证，1已验证</Comment>
+      <DataType>int(1)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="24" parent="7" name="point">
+      <Position>5</Position>
+      <Comment>用户积分</Comment>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="25" parent="7" name="admin">
+      <Position>6</Position>
+      <Comment>0非网站管理员，1是网站管理员</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <key id="26" parent="7" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>name</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="27" parent="8" name="id">
+      <Position>1</Position>
+      <Comment>作品集ID</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="28" parent="8" name="title">
+      <Position>2</Position>
+      <Comment>作品名称</Comment>
+      <DataType>varchar(40)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="29" parent="8" name="description">
+      <Position>3</Position>
+      <Comment>描述</Comment>
+      <DataType>varchar(200)|0</DataType>
+    </column>
+    <column id="30" parent="8" name="fenlei">
+      <Position>4</Position>
+      <Comment>&apos;renxiang&apos;,&apos;fengjing&apos;,&apos;chongwu&apos;,&apos;jishi&apos;,&apos;chongwu&apos; 从1开始</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="31" parent="8" name="author">
+      <Position>5</Position>
+      <Comment>作者用户名</Comment>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="32" parent="8" name="time">
+      <Position>6</Position>
+      <Comment>上传时间，由程序设置，规则由程序确定</Comment>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="33" parent="8" name="verified">
+      <Position>7</Position>
+      <Comment>0未验证，1已经验证</Comment>
+      <DataType>int(1)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="34" parent="8" name="num_zan">
+      <Position>8</Position>
+      <Comment>点赞数（设定：收藏自动点赞，取消收藏自动取消赞）</Comment>
+      <DataType>int(10)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <key id="35" parent="8" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>

@@ -23,10 +23,10 @@ public class DataHelperImpl implements DataHelper{
     private DataSource dataSource;
     public DataHelperImpl(){
         PoolProperties p = new PoolProperties();
-        p.setUrl("jdbc:mysql://122.152.197.205:3306/moontell");//数据库的url
+        p.setUrl("jdbc:mysql://115.159.27.19:3306/pome");//数据库的url
         p.setDriverClassName("com.mysql.jdbc.Driver");
-        p.setUsername("moontell");//用户名
-        p.setPassword("!@MOONtell426543");//密码
+        p.setUsername("pome");//用户名
+        p.setPassword("pome");//密码
         p.setJmxEnabled(true);
         p.setTestWhileIdle(false);
         p.setTestOnBorrow(true);

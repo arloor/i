@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="moontell@122.152.197.205" uuid="4b270ab4-0cfc-467b-a283-21f67d41ad04">
+    <data-source source="LOCAL" name="pome@115.159.27.19" uuid="8622a78e-6027-4899-b3d2-d3d8268ef8a9">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://122.152.197.205:3306/moontell</jdbc-url>
+      <jdbc-url>jdbc:mysql://115.159.27.19:3306/pome</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />
