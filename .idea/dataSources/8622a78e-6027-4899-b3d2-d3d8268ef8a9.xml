@@ -120,62 +120,70 @@ worksid</ColNames>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <key id="26" parent="7" name="PRIMARY">
+    <column id="26" parent="7" name="zhiye">
+      <Position>7</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="27" parent="7" name="dizhi">
+      <Position>8</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="28" parent="7" name="age">
+      <Position>9</Position>
+      <DataType>int(3)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="29" parent="7" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>name</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="27" parent="8" name="id">
+    <column id="30" parent="8" name="id">
       <Position>1</Position>
       <Comment>作品集ID</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="28" parent="8" name="title">
+    <column id="31" parent="8" name="title">
       <Position>2</Position>
       <Comment>作品名称</Comment>
       <DataType>varchar(40)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="29" parent="8" name="description">
+    <column id="32" parent="8" name="description">
       <Position>3</Position>
       <Comment>描述</Comment>
       <DataType>varchar(200)|0</DataType>
     </column>
-    <column id="30" parent="8" name="fenlei">
+    <column id="33" parent="8" name="fenlei">
       <Position>4</Position>
       <Comment>&apos;renxiang&apos;,&apos;fengjing&apos;,&apos;chongwu&apos;,&apos;jishi&apos;,&apos;chongwu&apos; 从1开始</Comment>
-      <DataType>int(11)|0</DataType>
+      <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="31" parent="8" name="author">
+    <column id="34" parent="8" name="author">
       <Position>5</Position>
       <Comment>作者用户名</Comment>
       <DataType>varchar(10)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="32" parent="8" name="time">
+    <column id="35" parent="8" name="time">
       <Position>6</Position>
       <Comment>上传时间，由程序设置，规则由程序确定</Comment>
       <DataType>varchar(30)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="33" parent="8" name="verified">
+    <column id="36" parent="8" name="num_zan">
       <Position>7</Position>
-      <Comment>0未验证，1已经验证</Comment>
-      <DataType>int(1)|0</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-    </column>
-    <column id="34" parent="8" name="num_zan">
-      <Position>8</Position>
       <Comment>点赞数（设定：收藏自动点赞，取消收藏自动取消赞）</Comment>
       <DataType>int(10)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <key id="35" parent="8" name="PRIMARY">
+    <key id="37" parent="8" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

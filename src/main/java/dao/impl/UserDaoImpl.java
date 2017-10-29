@@ -2,6 +2,7 @@ package dao.impl;
 
 import dao.UserDao;
 import datahelper.DataHelper;
+import domain.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,5 +47,61 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
         }
         return "false";
+    }
+
+    @Override
+    public UserInfo getUserInfo(String name) {
+        Connection connection=dataHelper.getConnection();
+        Statement statement=dataHelper.getStatement(connection);
+        String zhiye="undefined";
+        String dizhi="undefined";
+        int age=0;
+        int Numguanzhu=0;
+        int NumWorks=0;
+        try {
+            ResultSet resultSet=statement.executeQuery("SELECT * FROM `user` WHERE name='"+name+"'");
+            while (resultSet.next()){
+                zhiye=resultSet.getString("zhiye");
+                dizhi=resultSet.getString("dizhi");
+                age=resultSet.getInt("age");
+                break;
+            }
+            resultSet.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            ResultSet resultSet=statement.executeQuery("SELECT count(*) FROM `works` WHERE author='"+name+"'");
+            while (resultSet.next()){
+                NumWorks=resultSet.getInt(1);
+                break;
+            }
+            resultSet.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            ResultSet resultSet=statement.executeQuery("SELECT count(*) FROM `guanzhu` WHERE beiguanzhuzhe='"+name+"'");
+            while (resultSet.next()){
+                Numguanzhu=resultSet.getInt(1);
+                break;
+            }
+            resultSet.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                statement.close();
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        UserInfo userInfo=new UserInfo(name,zhiye,dizhi,age,Numguanzhu,NumWorks);
+
+        return userInfo;
     }
 }
